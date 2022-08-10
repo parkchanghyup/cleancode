@@ -4,7 +4,7 @@ from main import Store, Product
 
 
 class GrabRealStore(Store):
-    def __init__(self, url = "https://fakestoreapi.com"):
+    def __init__(self, url="https://fakestoreapi.com"):
         self._money = 0
         self.name = "그랩마켓"
         self.url = url
@@ -16,9 +16,9 @@ class GrabRealStore(Store):
         self._products = products
 
     def show_product(self, product_id):
-        res = requests.get(url = f"{self.url}/products/{product_id}")
+        res = requests.get(url=f"{self.url}/products/{product_id}")
         product = res.json()
-        return Product(name = product['title'], price = product['price'])
+        return Product(name=product["title"], price=product["price"])
 
     def sell_product(self, product_id, money):
         # Validation 코드는 최소화
@@ -35,9 +35,9 @@ class GrabRealStore(Store):
             raise e
 
     def _take_out_product(self, product_id):
-        res = requests.delete(url = f"{self.url}/products/{product_id}")
+        res = requests.delete(url=f"{self.url}/products/{product_id}")
         product = res.json()
-        return Product(name = product['title'], price = product['price'])
+        return Product(name=product["title"], price=product["price"])
 
     def _take_money(self, money):
         self._money += money
@@ -47,7 +47,7 @@ class GrabRealStore(Store):
 
 
 # https://fakestoreapi.com
-if __name__ =='__main__':
+if __name__ == "__main__":
     store = GrabRealStore()
-    result = store.show_product(product_id = 1)
+    result = store.show_product(product_id=1)
     print(result)
