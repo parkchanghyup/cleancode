@@ -1,4 +1,5 @@
 class GrabStore:
+    
     def __init__(self):
         self.money = 0
         self.name = "그랩마켓"
