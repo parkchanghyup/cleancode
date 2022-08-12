@@ -1,21 +1,26 @@
 # 1번. 다른 Store가 들어오면 어떻게 될까?
+
 # 개선점
 #1. Store를 추상화한다.
 #2. 의존성 주입을 한다
 
 # 2번. Store에 있는 상품과 돈을 마음대로 접근할 수 있다.
+
 # 개선점
 # 1. Store의 책임을 정의하고 캡슐화한다.
 # 2. User의 결제 로직을 수정한다.
 # 3. User도 캡슐화해보자!
 
 # 3번. User가 많은 행위를 책임지고 있다. Store가 판매하는 책임을 가져야 하지 않을까?
+
 # 개선점
 # 1. 상점에서 상품을 판매하는 행위를 추상화하고 구체적인 로직을 해당 메서드로 옮긴다.
 
 # 4번. product가 책임을 가져야 하지 않을까?
+
 # 개선점
 # 1. 딕셔너리 타입을 클래스(데이터클래스) 객체로 변환하자.
+
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
@@ -24,7 +29,6 @@ from dataclasses import dataclass
 class Product:
     name: str
     price: int
-
 
 class Store(ABC):
     @abstractmethod
@@ -40,7 +44,6 @@ class Store(ABC):
     @abstractmethod
     def sell_product(self, product_id, money):
         pass
-
 
 class GrabStore(Store):
     def __init__(self, products):
