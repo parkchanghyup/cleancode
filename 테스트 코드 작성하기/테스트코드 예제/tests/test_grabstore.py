@@ -3,20 +3,24 @@ import pytest
 from main import Product
 from unittest import mock
 
-# Unit Test
-from tests.conftest import API_URL
 
 
-def test_show_product(mock_api, grab_store, mock_products):
-    #given
+
+def test_show_product(grab_store, mock_products):
+
+    # given
     product_id = 1
-    mock_product = mock_products[product_id]
 
-    #when
-    product = grab_store.show_product(product_id=product_id)
+    # when
+    with mock.patch('requests.get') as mock_api:
+        res = mock_api.return_value
+        res.status_code = 200
+        #requests.get -> status code
+        #res = requests.get # res.status_code => 200
+        res.josn.return_value = mock_products[product_id]
 
-    #then
-    assert product == Product(name=mock_product["title"], price=mock_product["price"])
+        product = grab_store.show_product(product_id = product_id)
+
 
 def test_take_money(grab_store):
     price = 100
