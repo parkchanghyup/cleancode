@@ -73,7 +73,7 @@ OSI 7계층 모델은 국제표준화기구에서 개발한 네트워크 통신 
 
 ## 각 계층이 하는 일
 
-![OSI 7계층](image/img14.png)  
+![OSI 7계층](images/img14.png)  
 
 
 
